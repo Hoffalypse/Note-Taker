@@ -42,8 +42,10 @@ app.route('/api/notes')
     res.status(201).json(data);
  
 })
-.delete((req, res) => {
+app.delete(`/notes/:id`,(req, res) => {
+  res.send('Got a DELETE request at /notes')
 
+  
 })
 
 app.listen(PORT, () =>
