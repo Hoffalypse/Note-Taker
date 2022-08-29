@@ -25,6 +25,7 @@ app.route('/api/notes')
   console.info(`${req.method} they requested.. again`);
   //utf-8 is default character encoding used by all browsers
   let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+  // console.log('this is the data from get - ' + data);
   res.send(data);
 })
 .post((req,res) => {
@@ -42,10 +43,21 @@ app.route('/api/notes')
     res.status(201).json(data);
  
 })
-app.delete(`/notes/:id`,(req, res) => {
-  res.send('Got a DELETE request at /notes')
-
+app.delete(`/api/notes/:id`,(req, res) => {
+ 
+  let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
   
+  const indexOfObj = data.findIndex(obj => {
+    return obj.id === req.params.id;
+  });
+  
+  data.splice(indexOfObj, 1);
+  
+  fs.writeFileSync('./db/db.json', JSON.stringify(data));
+  
+  res.send('selected data has been deleted')
+
+
 })
 
 app.listen(PORT, () =>
