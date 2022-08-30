@@ -14,7 +14,7 @@ This app has been deployed on Heroku Cloud Application Platform at : <br>
 https://note-taker92380.herokuapp.com/
 
 ## Usage 
-The app start with a landing page shown below:
+The app starts with a landing page shown below:
 
 <img src="./Assets/landing.png" alt ="landing page"> <br>
 
@@ -22,7 +22,7 @@ When user clicks the 'Get Started' button they are directed to the main note tak
 
 <img src="./Assets/notes.png" alt ="notes page"> <br>
 
-When the user fills out the 'note title' and 'note text' sections a '💾' icon will appear in the top right of the page. When clicked this will save the note to the database and shown on the right hand side of the page. From there user can add as many notes as they please all showing on the right hand side. Each saved note can be clicked on to show the note title and note text on the main part of the screen. If user would like to add an additional note from there, click the '+' button at the top right to add a new note.
+When the user fills out the 'Note title' and 'Note text' sections a '💾' icon will appear in the top right of the page. When clicked this will save the note to the database and shown on the left hand side of the page. From there user can add as many notes as they please, all showing on the left hand side. Each saved note can be clicked on to show the note title and note text on the main part of the screen. If user would like to add an additional note from there, click the '+' button at the top right to add a new note.
 
 Each note can be deleted by cliking the red trash can icon next to the individual note title on the left of the page. 
 

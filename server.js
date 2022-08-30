@@ -3,7 +3,7 @@ const db = require('./db/db.json');
 const fs = require ('fs');
 const path = require('path');
 //adds unique identifyer using NPM UUID
-const uuid = require('./id-number/uuid');
+const uuid = require('./helper/uuid');
 const PORT = process.env.PORT || 3001;
 
 const app = express();
@@ -28,12 +28,9 @@ app.get('/notes',(req, res) => {
 
 app.route('/api/notes')
 .get((req,res) => {
-  
-  console.info(`${req.method} they requested.. again`);
-  //utf-8 is default character encoding used by all browsers
-  let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+  console.info(`${req.method} requested.. again`);
   // console.log('this is the data from get - ' + data);
-  res.send(data);
+  res.send(JSON.parse(fs.readFileSync("./db/db.json", "utf8")));
 })
 .post((req,res) => {
   console.info(`${req.method} Post Time, Yay more data!`);

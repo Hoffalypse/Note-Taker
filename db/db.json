@@ -1,1 +1,12 @@
-[{"title":"new note","text":"awesome note","id":"8461"},{"title":"another one","text":"checking","id":"8f0a"},{"title":"add","text":"this","id":"d146"}]
+[
+    {
+        "title": "note 1",
+        "text": "added",
+        "id": "fc1c"
+    },
+    {
+        "title": "note 2",
+        "text": "added",
+        "id": "9eb5"
+    }
+]
