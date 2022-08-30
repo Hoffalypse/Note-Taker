@@ -12,34 +12,29 @@ app.use(express.json());
 //adds static HTML CSS and JS
 app.use(express.static('public'));
 
-//get route for homepage 
-app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/index.html'))
-);
-app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/index.html'))
-);
-
 app.get('/notes',(req, res) => {
+  data = path.join(__dirname, './public/notes.html');
   //pulls second HTML page and renders
-  res.sendFile(path.join(__dirname, './public/notes.html'))
+  res.sendFile(data)
   
 })
 
 app.route('/api/notes')
 .get((req,res) => {
+  //pulls the added notes from memory
   console.info(`${req.method} requested.. again`);
-  // console.log('this is the data from get - ' + data);
   res.send(JSON.parse(fs.readFileSync("./db/db.json", "utf8")));
 })
 .post((req,res) => {
   console.info(`${req.method} Post Time, Yay more data!`);
   const madeNote = req.body;
  //gets unique identifier  
+ 
   madeNote.id = uuid();
-  //turns string into object
+  
+  //turns string into object and preps file to be added to
  let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
-  //add now object to data 
+  //add new object to data 
   data.push(madeNote);
   
 //stringify before sending to json file 
@@ -50,19 +45,24 @@ app.route('/api/notes')
 app.delete(`/api/notes/:id`,(req, res) => {
  
   let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
-  
+  //goes through all objects to see which matches the passed in ID
   const indexOfObj = data.findIndex(obj => {
     return obj.id === req.params.id;
   });
-  
+  //pull out deleted element of the object 
   data.splice(indexOfObj, 1);
   
   fs.writeFileSync('./db/db.json', JSON.stringify(data));
   
-  res.send('selected data has been deleted')
+  res.send('selected data has been deleted. POOF!')
 
 
 })
+
+//wild card route for not listed URL entries
+app.get('*', (req, res) =>
+  res.sendFile(path.join(__dirname, '/public/index.html'))
+);
 
 app.listen(PORT, () =>
   console.log(`listening on my alltime favorite port ${PORT}!`)
